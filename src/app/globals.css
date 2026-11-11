@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #1d4ed8;
+  --color-brand-ink: #1e3a8a;
+  --color-brand-soft: #e8efff;
+  --color-ink: #1c1917;
+  --color-muted: #57534e;
+  --color-line: #d6d3d1;
+  --color-canvas: #f5f5f4;
+  --color-surface: #ffffff;
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-soft: #f0fdf4;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Tamil", "Noto Sans Tamil UI",
+    "Tamil Sangam MN", "Latha", "Nirmala UI", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Tamil script needs a little more size than Latin to read comfortably in sunlight. */
+  font-size: 17px;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  overscroll-behavior-y: none;
+}
+
+/* Every tap target is at least 48px tall. */
+@utility btn {
+  @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-lg font-semibold
+    transition-colors select-none focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand
+    disabled:cursor-not-allowed disabled:opacity-45;
+}
+@utility btn-primary {
+  @apply btn bg-brand text-white active:bg-brand-ink;
+}
+@utility btn-secondary {
+  @apply btn border-2 border-line bg-surface text-ink active:bg-canvas;
+}
+@utility btn-danger {
+  @apply btn border-2 border-danger/40 bg-surface text-danger active:bg-danger-soft;
+}
+@utility btn-link {
+  @apply inline-flex min-h-12 items-center px-1 text-base font-semibold text-brand underline-offset-4 active:underline;
+}
+@utility input {
+  @apply block min-h-14 w-full rounded-xl border-2 border-line bg-surface px-4 text-lg text-ink placeholder:text-muted/60
+    focus:border-brand focus:outline-none aria-invalid:border-danger;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-surface;
+}
