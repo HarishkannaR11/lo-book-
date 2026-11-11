@@ -18,6 +18,12 @@ const items = [
     match: (p: string) => p.startsWith("/trips") || p.startsWith("/expenses"),
   },
   {
+    href: "/parties",
+    key: "parties",
+    icon: "M4 5h13a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3zM8 10h8M8 14h5",
+    match: (p: string) => p.startsWith("/parties"),
+  },
+  {
     href: "/vehicles",
     key: "vehicles",
     icon: "M7 3h10l1 4H6zM6 7h12v11H6zM9 11h6M9 14h6",
@@ -39,7 +45,7 @@ export function BottomNav() {
       aria-label={t("label")}
       className="fixed inset-x-0 bottom-0 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="mx-auto grid max-w-md grid-cols-4">
+      <ul className="mx-auto grid max-w-md grid-cols-5">
         {items.map((item) => {
           const active = item.match(pathname);
           return (
@@ -47,7 +53,7 @@ export function BottomNav() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-16 flex-col items-center justify-center gap-0.5 text-sm font-semibold ${active ? "text-brand" : "text-muted"}`}
+                className={`flex min-h-16 flex-col items-center justify-center gap-0.5 text-xs font-semibold ${active ? "text-brand" : "text-muted"}`}
               >
                 <svg aria-hidden viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d={item.icon} />

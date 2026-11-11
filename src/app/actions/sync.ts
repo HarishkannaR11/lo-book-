@@ -4,7 +4,7 @@ import { z } from "zod";
 import type { ErrorCode } from "@/lib/errors";
 import { getAuthUser } from "@/lib/owner";
 import { createClient } from "@/lib/supabase/server";
-import { closeTripWire, expenseWire, tripWire } from "@/lib/trip-schemas";
+import { closeTripWire, expenseWire, paymentWire, tripWire } from "@/lib/trip-schemas";
 
 /**
  * The server half of offline sync. Every write is idempotent on the phone-minted client_uuid
@@ -140,6 +140,15 @@ export async function pushCloseTrip(input: unknown): Promise<PushResult> {
   if (error) return classify(error);
   if (!data.length) return { ok: false, retry: true, error: "generic" }; // trip not synced yet
   return { ok: true };
+}
+
+export async function pushPayment(input: unknown): Promise<PushResult> {
+  const parsed = paymentWire.safeParse(input);
+  if (!parsed.success) return { ok: false, retry: false, error: "syncRejected" };
+  if (!(await getAuthUser())) return SIGNED_OUT;
+  const supabase = await createClient();
+  const { error } = await supabase.from("payments").upsert(parsed.data, { onConflict: "client_uuid", ignoreDuplicates: true });
+  return classify(error);
 }
 
 /** Short-lived links to view a bunk-slip photo. */

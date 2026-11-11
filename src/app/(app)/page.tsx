@@ -21,10 +21,10 @@ export default async function Home() {
           {format.number(profit, "inr")}
         </p>
       </section>
-      <section className="card space-y-1 p-5">
+      <Link href="/parties" className="card block space-y-1 p-5 active:bg-canvas">
         <h2 className="text-base font-semibold text-muted">{t("outstanding")}</h2>
         <p className="text-4xl font-bold tabular-nums">{format.number(outstanding, "inr")}</p>
-      </section>
+      </Link>
       <div className="grid gap-3 pt-2">
         <Link href="/trips/new" className="btn-primary min-h-20 text-xl">
           {t("newTrip")}

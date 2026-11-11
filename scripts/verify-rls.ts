@@ -79,7 +79,7 @@ async function signIn(phone: string): Promise<{ db: Client; userId: string }> {
 type TableName = keyof Database["public"]["Tables"];
 type ViewName = keyof Database["public"]["Views"];
 const TABLES: TableName[] = ["owners", "vehicles", "vehicle_documents", "drivers", "parties", "trips", "trip_expenses", "payments"];
-const VIEWS: ViewName[] = ["trip_summary", "vehicle_mileage", "party_outstanding", "owner_dashboard", "vehicle_odometer"];
+const VIEWS: ViewName[] = ["trip_summary", "vehicle_mileage", "party_outstanding", "owner_dashboard", "vehicle_odometer", "party_ledger"];
 const ALL_READABLE: (TableName | ViewName)[] = [...TABLES, ...VIEWS];
 
 const isView = (rel: TableName | ViewName): rel is ViewName => (VIEWS as string[]).includes(rel);
@@ -204,6 +204,12 @@ async function main(): Promise<void> {
   );
   check("party_outstanding: 5000 + 18000 − 0 − 10000 = 13000 (open trip not billed yet)",
     Number(owed.outstanding) === 13000, String(owed.outstanding));
+
+  const ledger = must("A party_ledger", await a.db.from("party_ledger").select("kind, debit, credit, balance, seq").eq("party_id", party.id).order("seq"));
+  check("party_ledger: opening → trip → payment, running balance 5000 → 23000 → 13000",
+    JSON.stringify(ledger.map((l) => [l.kind, Number(l.balance)])) === JSON.stringify([["opening", 5000], ["trip", 23000], ["payment", 13000]]),
+    JSON.stringify(ledger));
+  check("party_ledger: last balance equals party_outstanding", Number(ledger.at(-1)?.balance) === Number(owed.outstanding));
 
   // Idempotent sync: the same client_uuid twice yields one row.
   const dupeUuid = randomUUID();

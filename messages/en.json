@@ -8,7 +8,8 @@
     "home": "Home",
     "settings": "Settings",
     "trips": "Trips",
-    "vehicles": "Vehicles"
+    "vehicles": "Vehicles",
+    "parties": "Parties"
   },
   "common": {
     "save": "Save",
@@ -140,7 +141,44 @@
     "empty": "No parties added yet",
     "editTitle": "Edit party",
     "count": "{count, plural, =0 {No parties} one {# party} other {# parties}}",
-    "added": "{name} added"
+    "added": "{name} added",
+    "outstanding": "Outstanding",
+    "inCredit": "Party has paid extra",
+    "settled": "Settled",
+    "plusFreight": "+ Freight on closed trips",
+    "minusAdvance": "− Advance taken on trips",
+    "minusPayments": "− Payments received",
+    "recordPayment": "Record a payment",
+    "amount": "Amount received (₹)",
+    "mode": "How it was paid",
+    "modes": {
+      "upi": "UPI",
+      "cash": "Cash",
+      "cheque": "Cheque",
+      "bank": "Bank transfer"
+    },
+    "receivedOn": "Date received",
+    "reference": "Reference",
+    "saveReceipt": "Save payment",
+    "received": "{amount} received and saved",
+    "receivedOffline": "{amount} saved on the phone · will send when online",
+    "pendingPayments": "{count, plural, one {1 payment not counted yet · waiting to sync} other {# payments not counted yet · waiting to sync}}",
+    "reminder": "Send reminder on WhatsApp",
+    "reminderLanguage": "Reminder language",
+    "reminderNoPhone": "No mobile number saved for this party. WhatsApp will ask whom to send it to.",
+    "ledger": "Ledger",
+    "ledgerEmpty": "No entries yet",
+    "entry": {
+      "opening": "Old balance",
+      "trip": "Trip: {route}",
+      "advance": "Advance: {route}",
+      "payment": "Payment · {mode}"
+    },
+    "debitAmount": "+ {amount}",
+    "creditAmount": "− {amount}",
+    "balanceAfter": "Balance {amount}",
+    "deletePayment": "Delete this payment",
+    "confirmDeletePayment": "Delete this payment? The balance will go back up."
   },
   "offline": {
     "title": "You're offline",
@@ -157,7 +195,8 @@
     "failed": {
       "trip": "Trip not saved",
       "expense": "Expense not saved",
-      "closeTrip": "Trip not closed"
+      "closeTrip": "Trip not closed",
+      "payment": "Payment not saved"
     },
     "discard": "Discard"
   },
@@ -286,5 +325,14 @@
     "readFailed": "Couldn't find the date. Please enter it.",
     "expiresOn": "Expiry date",
     "viewPhoto": "View saved photo"
+  },
+  "reminder": {
+    "greeting": "Hello {party},",
+    "from": "This is a reminder from {business}.",
+    "due": "Balance due as of {date}: *{amount}*",
+    "recentTrips": "Recent trips:",
+    "tripLine": "• {from} → {to} ({date}) — {freight}",
+    "request": "Kindly arrange the payment at the earliest. Thank you.",
+    "sign": "— {owner}, {phone}"
   }
 }

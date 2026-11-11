@@ -9,7 +9,8 @@ export function isLocale(value: unknown): value is Locale {
 
 export const formats = {
   number: {
-    inr: { style: "currency", currency: "INR", maximumFractionDigits: 0 },
+    // ₹54,000 for whole rupees, ₹53,999.50 when there are paise — so a ledger matches a hand count.
+    inr: { style: "currency", currency: "INR", minimumFractionDigits: 2, maximumFractionDigits: 2, trailingZeroDisplay: "stripIfInteger" },
   },
   dateTime: {
     short: { day: "numeric", month: "short", year: "numeric" },

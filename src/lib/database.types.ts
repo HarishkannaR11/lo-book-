@@ -522,6 +522,27 @@ export type Database = {
         };
         Relationships: [];
       };
+      party_ledger: {
+        Row: {
+          balance: number | null;
+          created_at: string | null;
+          credit: number | null;
+          debit: number | null;
+          entry_date: string | null;
+          from_place: string | null;
+          kind: string | null;
+          mode: Database["public"]["Enums"]["payment_mode"] | null;
+          owner_id: string | null;
+          party_id: string | null;
+          ref_id: string | null;
+          reference: string | null;
+          seq: number | null;
+          to_place: string | null;
+          trip_client_uuid: string | null;
+        };
+        ComputedFields: never;
+        Relationships: [];
+      };
       party_outstanding: {
         Row: {
           advance_received: number | null;

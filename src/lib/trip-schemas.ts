@@ -50,6 +50,20 @@ export const closeTripWire = z.object({
 });
 export type CloseTripWire = z.infer<typeof closeTripWire>;
 
+export const PAYMENT_MODES = ["upi", "cash", "cheque", "bank"] as const;
+export type PaymentMode = (typeof PAYMENT_MODES)[number];
+
+/** A part payment from a party. Any amount; the ledger keeps the running balance. */
+export const paymentWire = z.object({
+  client_uuid: z.uuid(),
+  party_id: z.uuid(),
+  amount: money.refine((n) => n > 0, { error: "amountInvalid" }),
+  mode: z.enum(PAYMENT_MODES),
+  received_on: isoDate,
+  reference: z.string().trim().max(80, { error: "tooLong" }).nullable(),
+});
+export type PaymentWire = z.infer<typeof paymentWire>;
+
 /** Form text → number: "5,000" → 5000, "" → null, anything else non-numeric → NaN (fails zod). */
 export function toNumber(value: string): number | null {
   const cleaned = value.replace(/[,\s₹]/g, "");

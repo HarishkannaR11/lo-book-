@@ -3,11 +3,11 @@
  * queued in the same transaction, then a sync is attempted. With no signal, nothing else
  * happens until the phone is back online.
  */
-import type { CloseTripWire, ExpenseWire, TripWire } from "@/lib/trip-schemas";
+import type { CloseTripWire, ExpenseWire, PaymentWire, TripWire } from "@/lib/trip-schemas";
 import { db } from "./db";
 import { syncNow } from "./sync";
 
-const queued = (type: "trip" | "expense" | "closeTrip", ref: string) => ({
+const queued = (type: "trip" | "expense" | "closeTrip" | "payment", ref: string) => ({
   type,
   ref,
   created_at: Date.now(),
@@ -30,6 +30,16 @@ export async function saveExpenseLocally(expense: ExpenseWire, photo: Blob | nul
     await db.outbox.add(queued("expense", expense.client_uuid));
   });
   void syncNow();
+}
+
+/** Resolves true when the payment reached the server, false when it is queued for later. */
+export async function savePaymentLocally(payment: PaymentWire): Promise<boolean> {
+  await db.transaction("rw", db.payments, db.outbox, async () => {
+    await db.payments.add({ ...payment, created_at: Date.now() });
+    await db.outbox.add(queued("payment", payment.client_uuid));
+  });
+  await syncNow();
+  return (await db.outbox.where("ref").equals(payment.client_uuid).count()) === 0;
 }
 
 /** Resolves true when the close reached the server, false when it is queued for later. */
@@ -67,9 +77,10 @@ export async function closeTripLocally(close: CloseTripWire): Promise<boolean> {
 export async function discardFailed(seq: number): Promise<void> {
   const item = await db.outbox.get(seq);
   if (!item) return;
-  await db.transaction("rw", db.outbox, db.trips, db.expenses, async () => {
+  await db.transaction("rw", [db.outbox, db.trips, db.expenses, db.payments], async () => {
     await db.outbox.delete(seq);
     if (item.type === "expense") await db.expenses.delete(item.ref);
+    if (item.type === "payment") await db.payments.delete(item.ref);
     if (item.type === "trip") {
       await db.trips.delete(item.ref);
       // Expenses queued against a trip that will never exist can't land either.

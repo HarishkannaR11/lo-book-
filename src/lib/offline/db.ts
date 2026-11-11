@@ -6,7 +6,7 @@
  * holds one entry per pending write, in the order they were made.
  */
 import Dexie, { type EntityTable } from "dexie";
-import type { ExpenseKind } from "@/lib/trip-schemas";
+import type { ExpenseKind, PaymentWire } from "@/lib/trip-schemas";
 
 export type LocalVehicle = { id: string; reg_number: string; nickname: string | null; last_odometer: number | null };
 export type LocalDriver = { id: string; name: string };
@@ -42,10 +42,12 @@ export type LocalExpense = {
   created_at: number;
 };
 
+export type LocalPayment = PaymentWire & { created_at: number };
+
 export type OutboxItem = {
   seq?: number;
-  type: "trip" | "expense" | "closeTrip";
-  ref: string; // client_uuid of the trip or expense
+  type: "trip" | "expense" | "closeTrip" | "payment";
+  ref: string; // client_uuid of the trip, expense or payment
   created_at: number;
   attempts: number;
   error: string | null;
@@ -58,6 +60,7 @@ class LorryDB extends Dexie {
   parties!: EntityTable<LocalParty, "id">;
   trips!: EntityTable<LocalTrip, "client_uuid">;
   expenses!: EntityTable<LocalExpense, "client_uuid">;
+  payments!: EntityTable<LocalPayment, "client_uuid">;
   outbox!: EntityTable<OutboxItem, "seq">;
   meta!: EntityTable<{ key: string; value: string }, "key">;
 
@@ -72,6 +75,7 @@ class LorryDB extends Dexie {
       outbox: "++seq, ref, failed",
       meta: "key",
     });
+    this.version(2).stores({ payments: "client_uuid, party_id" });
   }
 }
 

@@ -4,7 +4,7 @@
  * entry is simply sent again, and the server's ON CONFLICT (client_uuid) DO NOTHING makes
  * that harmless.
  */
-import { pullSnapshot, pushCloseTrip, pushExpense, pushTrip, type PushResult } from "@/app/actions/sync";
+import { pullSnapshot, pushCloseTrip, pushExpense, pushPayment, pushTrip, type PushResult } from "@/app/actions/sync";
 import { db, type OutboxItem } from "./db";
 
 type DrainResult = { pushed: number };
@@ -49,6 +49,12 @@ async function push(item: OutboxItem): Promise<PushResult> {
       started_on: trip.started_on,
     });
   }
+  if (item.type === "payment") {
+    const payment = await db.payments.get(item.ref);
+    if (!payment) return { ok: true };
+    const { created_at, ...fields } = payment;
+    return pushPayment(fields);
+  }
   if (item.type === "closeTrip") {
     const trip = await db.trips.get(item.ref);
     if (!trip?.end_odometer || !trip.ended_on) return { ok: true };
@@ -80,9 +86,10 @@ async function drain(): Promise<DrainResult> {
     }
 
     if (result.ok) {
-      await db.transaction("rw", db.outbox, db.trips, db.expenses, async () => {
+      await db.transaction("rw", [db.outbox, db.trips, db.expenses, db.payments], async () => {
         await db.outbox.delete(item.seq);
         if (item.type === "expense") await db.expenses.delete(item.ref); // server is now the truth
+        else if (item.type === "payment") await db.payments.delete(item.ref);
         else await db.trips.update(item.ref, { synced: 1 });
       });
       pushed++;
