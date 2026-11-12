@@ -25,14 +25,23 @@
     "inUse": "In use",
     "notInUse": "Not in use",
     "signOut": "Sign out",
-    "signOutPending": "{count, plural, one {1 entry hasn't reached the server yet. Sign out anyway? It will be lost.} other {# entries haven't reached the server yet. Sign out anyway? They will be lost.}}",
+    "signOutPending": "{count, plural, one {1 entry hasn't reached the server yet. Sign out anyway? It will be lost.} other {{count, number, plain} entries haven't reached the server yet. Sign out anyway? They will be lost.}}",
     "sep": " · ",
     "dash": "—"
   },
   "language": {
     "label": "Language",
     "ta": "தமிழ்",
-    "en": "English"
+    "en": "English",
+    "hi": "हिन्दी",
+    "te": "తెలుగు",
+    "kn": "ಕನ್ನಡ",
+    "ml": "മലയാളം",
+    "mr": "मराठी",
+    "gu": "ગુજરાતી",
+    "pa": "ਪੰਜਾਬੀ",
+    "bn": "বাংলা",
+    "or": "ଓଡ଼ିଆ"
   },
   "login": {
     "title": "Sign in",
@@ -114,7 +123,7 @@
     "nicknamePlaceholder": "e.g. New lorry",
     "empty": "No vehicles added yet",
     "editTitle": "Edit vehicle",
-    "count": "{count, plural, =0 {No vehicles} one {# vehicle} other {# vehicles}}",
+    "count": "{count, plural, =0 {No vehicles} one {{count, number, plain} vehicle} other {{count, number, plain} vehicles}}",
     "added": "{reg} added"
   },
   "drivers": {
@@ -125,7 +134,7 @@
     "licence": "Licence number",
     "empty": "No drivers added yet",
     "editTitle": "Edit driver",
-    "count": "{count, plural, =0 {No drivers} one {# driver} other {# drivers}}",
+    "count": "{count, plural, =0 {No drivers} one {{count, number, plain} driver} other {{count, number, plain} drivers}}",
     "added": "{name} added"
   },
   "parties": {
@@ -140,7 +149,7 @@
     "openingBalanceHint": "What they already owed you before today",
     "empty": "No parties added yet",
     "editTitle": "Edit party",
-    "count": "{count, plural, =0 {No parties} one {# party} other {# parties}}",
+    "count": "{count, plural, =0 {No parties} one {{count, number, plain} party} other {{count, number, plain} parties}}",
     "added": "{name} added",
     "outstanding": "Outstanding",
     "inCredit": "Party has paid extra",
@@ -162,7 +171,7 @@
     "saveReceipt": "Save payment",
     "received": "{amount} received and saved",
     "receivedOffline": "{amount} saved on the phone · will send when online",
-    "pendingPayments": "{count, plural, one {1 payment not counted yet · waiting to sync} other {# payments not counted yet · waiting to sync}}",
+    "pendingPayments": "{count, plural, one {1 payment not counted yet · waiting to sync} other {{count, number, plain} payments not counted yet · waiting to sync}}",
     "reminder": "Send reminder on WhatsApp",
     "reminderLanguage": "Reminder language",
     "reminderNoPhone": "No mobile number saved for this party. WhatsApp will ask whom to send it to.",
@@ -190,8 +199,8 @@
     "home": "Go to home"
   },
   "sync": {
-    "offline": "{count, plural, =0 {No signal} one {No signal · 1 entry waiting to send} other {No signal · # entries waiting to send}}",
-    "sending": "{count, plural, one {Sending 1 entry…} other {Sending # entries…}}",
+    "offline": "{count, plural, =0 {No signal} one {No signal · 1 entry waiting to send} other {No signal · {count, number, plain} entries waiting to send}}",
+    "sending": "{count, plural, one {Sending 1 entry…} other {Sending {count, number, plain} entries…}}",
     "failed": {
       "trip": "Trip not saved",
       "expense": "Expense not saved",
@@ -224,16 +233,16 @@
     "viewResult": "See profit and mileage",
     "expenses": "Expenses",
     "noExpenses": "No expenses yet",
-    "litres": "{litres, number} L",
-    "km": "{km, number} km",
+    "litres": "{litres, number, plain} L",
+    "km": "{km, number, plain} km",
     "closeTitle": "Close trip",
     "endOdometer": "End odometer (km)",
-    "endOdometerHint": "Started at {km, number} km",
+    "endOdometerHint": "Started at {km, number, plain} km",
     "close": "Close trip",
     "closeQueued": "The trip will close as soon as you're online",
     "waiting": "Waiting to sync",
     "waitingOn": "{date} · waiting to sync",
-    "notCounted": "{count, plural, one {1 expense not counted yet · waiting to sync} other {# expenses not counted yet · waiting to sync}}",
+    "notCounted": "{count, plural, one {1 expense not counted yet · waiting to sync} other {{count, number, plain} expenses not counted yet · waiting to sync}}",
     "notFound": "Trip not found",
     "freightLine": "Freight {amount}",
     "photo": "Slip photo"
@@ -251,7 +260,7 @@
     "freight": "Freight (₹)",
     "advance": "Advance (₹)",
     "startOdometer": "Start odometer (km)",
-    "startOdometerHint": "Last reading {km, number} km",
+    "startOdometerHint": "Last reading {km, number, plain} km",
     "save": "Start trip",
     "savedOffline": "Trip saved on the phone. It will be sent when you're online.",
     "needMasters": "Add a vehicle and a party first.",
@@ -297,7 +306,7 @@
     "distance": "Distance",
     "litres": "Diesel",
     "odometer": "Odometer",
-    "odometerRange": "{start, number} → {end, number} km",
+    "odometerRange": "{start, number, plain} → {end, number, plain} km",
     "advance": "Advance from {party}",
     "backToTrips": "Back to trips"
   },

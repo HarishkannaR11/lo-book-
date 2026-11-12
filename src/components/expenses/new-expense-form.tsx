@@ -41,7 +41,10 @@ export function NewExpenseForm() {
 
   if (vehicles === undefined) return null;
 
-  const vehicleId = chosenVehicle ?? preselected?.vehicle_id ?? (vehicles.some((v) => v.id === lastVehicle) ? lastVehicle : vehicles[0]?.id ?? "");
+  // Default: the vehicle picked last time, else the one most recently sent on a trip, else the first.
+  const onTrip = [...openTrips].sort((a, b) => (a.started_on < b.started_on ? 1 : -1)).map((tr) => tr.vehicle_id);
+  const lastUsed = vehicles.some((v) => v.id === lastVehicle) ? lastVehicle : undefined;
+  const vehicleId = chosenVehicle ?? preselected?.vehicle_id ?? lastUsed ?? onTrip.find((id) => vehicles.some((v) => v.id === id)) ?? vehicles[0]?.id ?? "";
   const vehicle = vehicles.find((v) => v.id === vehicleId);
   const trip = preselected && preselected.vehicle_id === vehicleId
     ? preselected

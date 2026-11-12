@@ -1,16 +1,16 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getRequestConfig } from "next-intl/server";
-import { defaultLocale, formats, isLocale, LOCALE_COOKIE, type Locale } from "./config";
+import { formats, isLocale, LOCALE_COOKIE, negotiateLocale, type Locale } from "./config";
 
-// No locale in the URL: the choice lives in a cookie (and on the owner's row, which is
-// copied into the cookie at sign-in so a new phone picks it up). Tamil unless told otherwise.
+// No locale in the URL. Order: explicit (e.g. the static offline page) → the owner's saved
+// choice (cookie, copied from their account at sign-in) → the phone's language → Tamil.
 export default getRequestConfig(async ({ locale: requested }) => {
-  let locale: Locale = defaultLocale;
+  let locale: Locale;
   if (isLocale(requested)) {
-    locale = requested; // explicit, e.g. the offline page renders both languages statically
+    locale = requested;
   } else {
     const fromCookie = (await cookies()).get(LOCALE_COOKIE)?.value;
-    if (isLocale(fromCookie)) locale = fromCookie;
+    locale = isLocale(fromCookie) ? fromCookie : negotiateLocale((await headers()).get("accept-language"));
   }
   return {
     locale,

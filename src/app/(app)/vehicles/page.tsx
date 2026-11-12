@@ -13,7 +13,8 @@ export default async function Vehicles() {
     .from("vehicles")
     .select("id, reg_number, nickname, is_active, vehicle_documents(doc_type, expires_on)")
     .eq("is_active", true)
-    .order("created_at");
+    .order("created_at")
+    .order("reg_number");
   if (error) throw new Error(error.message);
   const today = todayIST();
 

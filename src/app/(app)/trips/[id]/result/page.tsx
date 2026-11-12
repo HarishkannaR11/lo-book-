@@ -39,21 +39,21 @@ export default async function TripResult({ params }: { params: Promise<{ id: str
       <section className="card overflow-hidden">
         <h2 className="px-4 pt-4 text-lg font-bold">{t("result.breakdown")}</h2>
         <dl className="divide-y divide-line">
-          <div className="flex min-h-12 items-center justify-between px-4">
+          <div className="flex min-h-12 items-center justify-between gap-4 px-4">
             <dt className="font-semibold">{t("result.freight")}</dt>
-            <dd className="font-semibold tabular-nums">{inr(s.freight_amount)}</dd>
+            <dd className="shrink-0 font-semibold tabular-nums">{inr(s.freight_amount)}</dd>
           </div>
           {KINDS.filter((k) => amountOf(k) !== 0).map((k) => (
-            <div key={k} className="flex min-h-12 items-center justify-between px-4">
+            <div key={k} className="flex min-h-12 items-center justify-between gap-4 px-4">
               <dt>{t("result.minus", { label: t(`kinds.${k}`) })}</dt>
-              <dd className="tabular-nums">{inr(amountOf(k))}</dd>
+              <dd className="shrink-0 tabular-nums">{inr(amountOf(k))}</dd>
             </div>
           ))}
-          <div className="flex min-h-12 items-center justify-between px-4">
+          <div className="flex min-h-12 items-center justify-between gap-4 px-4">
             <dt>{t("result.totalExpenses")}</dt>
-            <dd className="tabular-nums">{inr(s.expense_total)}</dd>
+            <dd className="shrink-0 tabular-nums">{inr(s.expense_total)}</dd>
           </div>
-          <div className="flex min-h-14 items-center justify-between bg-canvas px-4">
+          <div className="flex min-h-14 items-center justify-between gap-4 bg-canvas px-4">
             <dt className="text-lg font-bold">{profit < 0 ? t("result.loss") : t("result.profit")}</dt>
             <dd className={`text-lg font-bold tabular-nums ${profit < 0 ? "text-danger" : ""}`}>{inr(profit)}</dd>
           </div>
@@ -63,22 +63,22 @@ export default async function TripResult({ params }: { params: Promise<{ id: str
       <section className="card space-y-3 p-5">
         <h2 className="text-lg font-bold">{t("result.mileage")}</h2>
         {s.mileage_kmpl !== null ? (
-          <p className="text-4xl font-bold tabular-nums">{t("result.kmpl", { value: format.number(s.mileage_kmpl, { maximumFractionDigits: 2 }) })}</p>
+          <p className="text-4xl font-bold tabular-nums">{t("result.kmpl", { value: format.number(s.mileage_kmpl, "plain") })}</p>
         ) : (
           <p className="text-muted">{t("result.noMileage")}</p>
         )}
         <dl className="grid grid-cols-2 gap-3">
           <div>
             <dt className="text-sm text-muted">{t("result.distance")}</dt>
-            <dd className="font-semibold tabular-nums">{s.distance_km !== null ? t("trips.km", { km: s.distance_km }) : t("common.dash")}</dd>
+            <dd className="shrink-0 font-semibold tabular-nums">{s.distance_km !== null ? t("trips.km", { km: s.distance_km }) : t("common.dash")}</dd>
           </div>
           <div>
             <dt className="text-sm text-muted">{t("result.litres")}</dt>
-            <dd className="font-semibold tabular-nums">{t("trips.litres", { litres: s.litres ?? 0 })}</dd>
+            <dd className="shrink-0 font-semibold tabular-nums">{t("trips.litres", { litres: s.litres ?? 0 })}</dd>
           </div>
           <div className="col-span-2">
             <dt className="text-sm text-muted">{t("result.odometer")}</dt>
-            <dd className="font-semibold tabular-nums">{t("result.odometerRange", { start: s.start_odometer ?? 0, end: s.end_odometer ?? 0 })}</dd>
+            <dd className="shrink-0 font-semibold tabular-nums">{t("result.odometerRange", { start: s.start_odometer ?? 0, end: s.end_odometer ?? 0 })}</dd>
           </div>
         </dl>
       </section>

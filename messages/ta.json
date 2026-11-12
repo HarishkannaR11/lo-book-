@@ -25,14 +25,23 @@
     "inUse": "பயன்பாட்டில் உள்ளது",
     "notInUse": "பயன்பாட்டில் இல்லை",
     "signOut": "வெளியேறு",
-    "signOutPending": "{count, plural, one {1 பதிவு இன்னும் சர்வருக்குப் போகவில்லை. வெளியேறினால் அது இழக்கப்படும். வெளியேறவா?} other {# பதிவுகள் இன்னும் சர்வருக்குப் போகவில்லை. வெளியேறினால் அவை இழக்கப்படும். வெளியேறவா?}}",
+    "signOutPending": "{count, plural, one {1 பதிவு இன்னும் சர்வருக்குப் போகவில்லை. வெளியேறினால் அது இழக்கப்படும். வெளியேறவா?} other {{count, number, plain} பதிவுகள் இன்னும் சர்வருக்குப் போகவில்லை. வெளியேறினால் அவை இழக்கப்படும். வெளியேறவா?}}",
     "sep": " · ",
     "dash": "—"
   },
   "language": {
     "label": "மொழி",
     "ta": "தமிழ்",
-    "en": "English"
+    "en": "English",
+    "hi": "हिन्दी",
+    "te": "తెలుగు",
+    "kn": "ಕನ್ನಡ",
+    "ml": "മലയാളം",
+    "mr": "मराठी",
+    "gu": "ગુજરાતી",
+    "pa": "ਪੰਜਾਬੀ",
+    "bn": "বাংলা",
+    "or": "ଓଡ଼ିଆ"
   },
   "login": {
     "title": "உள்நுழைக",
@@ -114,7 +123,7 @@
     "nicknamePlaceholder": "எ.கா. புது வண்டி",
     "empty": "இன்னும் வண்டி சேர்க்கவில்லை",
     "editTitle": "வண்டியை மாற்று",
-    "count": "{count, plural, =0 {வண்டி இல்லை} one {# வண்டி} other {# வண்டிகள்}}",
+    "count": "{count, plural, =0 {வண்டி இல்லை} one {{count, number, plain} வண்டி} other {{count, number, plain} வண்டிகள்}}",
     "added": "{reg} சேர்க்கப்பட்டது"
   },
   "drivers": {
@@ -125,7 +134,7 @@
     "licence": "லைசென்ஸ் எண்",
     "empty": "இன்னும் டிரைவர் சேர்க்கவில்லை",
     "editTitle": "டிரைவரை மாற்று",
-    "count": "{count, plural, =0 {டிரைவர் இல்லை} one {# டிரைவர்} other {# டிரைவர்கள்}}",
+    "count": "{count, plural, =0 {டிரைவர் இல்லை} one {{count, number, plain} டிரைவர்} other {{count, number, plain} டிரைவர்கள்}}",
     "added": "{name} சேர்க்கப்பட்டார்"
   },
   "parties": {
@@ -140,7 +149,7 @@
     "openingBalanceHint": "இன்றைக்கு முன்பே இவர் தர வேண்டிய தொகை",
     "empty": "இன்னும் பார்ட்டி சேர்க்கவில்லை",
     "editTitle": "பார்ட்டியை மாற்று",
-    "count": "{count, plural, =0 {பார்ட்டி இல்லை} one {# பார்ட்டி} other {# பார்ட்டிகள்}}",
+    "count": "{count, plural, =0 {பார்ட்டி இல்லை} one {{count, number, plain} பார்ட்டி} other {{count, number, plain} பார்ட்டிகள்}}",
     "added": "{name} சேர்க்கப்பட்டது",
     "outstanding": "வர வேண்டிய பாக்கி",
     "inCredit": "பார்ட்டி கூடுதலாகத் தந்தது",
@@ -162,7 +171,7 @@
     "saveReceipt": "வரவு சேமி",
     "received": "{amount} வரவு சேமிக்கப்பட்டது",
     "receivedOffline": "{amount} போனில் சேமிக்கப்பட்டது · சிக்னல் வந்ததும் அனுப்பப்படும்",
-    "pendingPayments": "{count, plural, one {1 வரவு இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கிறது} other {# வரவுகள் இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கின்றன}}",
+    "pendingPayments": "{count, plural, one {1 வரவு இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கிறது} other {{count, number, plain} வரவுகள் இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கின்றன}}",
     "reminder": "WhatsApp-ல் நினைவூட்டு",
     "reminderLanguage": "நினைவூட்டல் மொழி",
     "reminderNoPhone": "இந்தப் பார்ட்டிக்கு மொபைல் எண் இல்லை. WhatsApp-ல் யாருக்கு அனுப்புவது என்று தேர்வு செய்யலாம்.",
@@ -190,8 +199,8 @@
     "home": "முகப்புக்குச் செல்"
   },
   "sync": {
-    "offline": "{count, plural, =0 {சிக்னல் இல்லை} one {சிக்னல் இல்லை · 1 பதிவு அனுப்பக் காத்திருக்கிறது} other {சிக்னல் இல்லை · # பதிவுகள் அனுப்பக் காத்திருக்கின்றன}}",
-    "sending": "{count, plural, one {1 பதிவை அனுப்புகிறது…} other {# பதிவுகளை அனுப்புகிறது…}}",
+    "offline": "{count, plural, =0 {சிக்னல் இல்லை} one {சிக்னல் இல்லை · 1 பதிவு அனுப்பக் காத்திருக்கிறது} other {சிக்னல் இல்லை · {count, number, plain} பதிவுகள் அனுப்பக் காத்திருக்கின்றன}}",
+    "sending": "{count, plural, one {1 பதிவை அனுப்புகிறது…} other {{count, number, plain} பதிவுகளை அனுப்புகிறது…}}",
     "failed": {
       "trip": "டிரிப் சேமிக்கப்படவில்லை",
       "expense": "செலவு சேமிக்கப்படவில்லை",
@@ -224,16 +233,16 @@
     "viewResult": "லாபம், மைலேஜ் பார்",
     "expenses": "செலவுகள்",
     "noExpenses": "இன்னும் செலவு இல்லை",
-    "litres": "{litres, number} லி",
-    "km": "{km, number} கி.மீ",
+    "litres": "{litres, number, plain} லி",
+    "km": "{km, number, plain} கி.மீ",
     "closeTitle": "டிரிப்பை முடி",
     "endOdometer": "இறுதி கி.மீ ரீடிங்",
-    "endOdometerHint": "தொடக்கம்: {km, number} கி.மீ",
+    "endOdometerHint": "தொடக்கம்: {km, number, plain} கி.மீ",
     "close": "டிரிப்பை முடி",
     "closeQueued": "சிக்னல் வந்ததும் டிரிப் முடிக்கப்படும்",
     "waiting": "அனுப்பக் காத்திருக்கிறது",
     "waitingOn": "{date} · அனுப்பக் காத்திருக்கிறது",
-    "notCounted": "{count, plural, one {1 செலவு இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கிறது} other {# செலவுகள் இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கின்றன}}",
+    "notCounted": "{count, plural, one {1 செலவு இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கிறது} other {{count, number, plain} செலவுகள் இன்னும் கணக்கில் சேரவில்லை · அனுப்பக் காத்திருக்கின்றன}}",
     "notFound": "இந்த டிரிப் இல்லை",
     "freightLine": "வாடகை {amount}",
     "photo": "பில் போட்டோ"
@@ -251,7 +260,7 @@
     "freight": "வாடகை (₹)",
     "advance": "அட்வான்ஸ் (₹)",
     "startOdometer": "தொடக்க கி.மீ ரீடிங்",
-    "startOdometerHint": "கடைசி ரீடிங் {km, number} கி.மீ",
+    "startOdometerHint": "கடைசி ரீடிங் {km, number, plain} கி.மீ",
     "save": "டிரிப் தொடங்கு",
     "savedOffline": "டிரிப் போனில் சேமிக்கப்பட்டது. சிக்னல் வந்ததும் அனுப்பப்படும்.",
     "needMasters": "முதலில் ஒரு வண்டியும் ஒரு பார்ட்டியும் சேர்க்கவும்.",
@@ -297,7 +306,7 @@
     "distance": "தூரம்",
     "litres": "டீசல்",
     "odometer": "கி.மீ ரீடிங்",
-    "odometerRange": "{start, number} → {end, number} கி.மீ",
+    "odometerRange": "{start, number, plain} → {end, number, plain} கி.மீ",
     "advance": "{party} தந்த அட்வான்ஸ்",
     "backToTrips": "டிரிப்களுக்குச் செல்"
   },

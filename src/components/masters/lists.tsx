@@ -14,7 +14,8 @@ export async function VehicleList({ editable }: { editable: boolean }) {
     .from("vehicles")
     .select("id, reg_number, nickname, is_active")
     .order("is_active", { ascending: false })
-    .order("created_at");
+    .order("created_at")
+    .order("reg_number");
   if (error) throw new Error(error.message);
   if (data.length === 0) return <Empty text={t("vehicles.empty")} />;
   return (

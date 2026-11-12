@@ -756,7 +756,18 @@ export type Database = {
       };
     };
     Enums: {
-      app_locale: "ta" | "en";
+      app_locale:
+        | "ta"
+        | "en"
+        | "hi"
+        | "bn"
+        | "mr"
+        | "te"
+        | "gu"
+        | "kn"
+        | "ml"
+        | "or"
+        | "pa";
       doc_type: "fc" | "insurance" | "permit" | "pollution" | "national_permit";
       expense_kind: "diesel" | "toll" | "bata" | "repair" | "fine" | "other";
       payment_mode: "upi" | "cash" | "cheque" | "bank";
@@ -891,7 +902,19 @@ export const Constants = {
   },
   public: {
     Enums: {
-      app_locale: ["ta", "en"],
+      app_locale: [
+        "ta",
+        "en",
+        "hi",
+        "bn",
+        "mr",
+        "te",
+        "gu",
+        "kn",
+        "ml",
+        "or",
+        "pa",
+      ],
       doc_type: ["fc", "insurance", "permit", "pollution", "national_permit"],
       expense_kind: ["diesel", "toll", "bata", "repair", "fine", "other"],
       payment_mode: ["upi", "cash", "cheque", "bank"],

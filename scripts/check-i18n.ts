@@ -3,7 +3,7 @@
  * versa, no value may be empty, and ICU placeholders ({phone}, {count}…) must match.
  * TypeScript separately rejects any t("key") that is not in en.json.
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 
 type Tree = { [key: string]: string | Tree };
 const load = (locale: string): Tree => JSON.parse(readFileSync(`messages/${locale}.json`, "utf8")) as Tree;
@@ -18,11 +18,12 @@ function flatten(tree: Tree, prefix = ""): Map<string, string> {
   return out;
 }
 
-const placeholders = (s: string) => [...s.matchAll(/\{(\w+)[,}]/g)].map((m) => m[1]).sort().join(",");
+const placeholders = (s: string) => [...new Set([...s.matchAll(/\{(\w+)[,}]/g)].map((m) => m[1]))].sort().join(",");
 
 const base = flatten(load("en"));
 const problems: string[] = [];
-for (const locale of ["ta"]) {
+const others = readdirSync("messages").filter((f) => f.endsWith(".json") && f !== "en.json").map((f) => f.slice(0, -5));
+for (const locale of others) {
   const other = flatten(load(locale));
   for (const key of base.keys()) if (!other.has(key)) problems.push(`${locale}: missing ${key}`);
   for (const key of other.keys()) if (!base.has(key)) problems.push(`${locale}: extra ${key} (not in en)`);
@@ -40,4 +41,4 @@ if (problems.length) {
   console.error(problems.join("\n"));
   process.exit(1);
 }
-console.log(`i18n OK: ${base.size} keys, ta and en in sync`);
+console.log(`i18n OK: ${base.size} keys × ${others.length + 1} languages (${["en", ...others].join(", ")}) in sync`);

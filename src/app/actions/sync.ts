@@ -55,7 +55,7 @@ export async function pullSnapshot(): Promise<Snapshot | null> {
   if (!user) return null;
   const supabase = await createClient();
   const [vehicles, odometers, drivers, parties, trips] = await Promise.all([
-    supabase.from("vehicles").select("id, reg_number, nickname").eq("is_active", true).order("created_at"),
+    supabase.from("vehicles").select("id, reg_number, nickname").eq("is_active", true).order("created_at").order("reg_number"),
     supabase.from("vehicle_odometer").select("vehicle_id, last_odometer"),
     supabase.from("drivers").select("id, name").eq("is_active", true).order("name"),
     supabase.from("parties").select("id, name, place").order("name"),

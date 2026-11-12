@@ -6,6 +6,7 @@ import { PaymentForm } from "@/components/parties/payment-form";
 import { PendingPayments } from "@/components/parties/pending-payments";
 import { ReminderButton } from "@/components/parties/reminder-button";
 import { PageHeader } from "@/components/ui/page-header";
+import { locales, type Locale } from "@/i18n/config";
 import { requireOwner } from "@/lib/owner";
 import { reminderText, whatsappLink } from "@/lib/reminder";
 import { createClient } from "@/lib/supabase/server";
@@ -46,12 +47,12 @@ export default async function PartyPage({ params }: { params: Promise<{ id: stri
     today: todayIST(),
     trips: recentTrips,
   };
+  // One ready-made message per language; the owner picks the one the party reads.
   const links =
     due > 0
-      ? {
-          ta: whatsappLink(p.phone, await reminderText("ta", reminder)),
-          en: whatsappLink(p.phone, await reminderText("en", reminder)),
-        }
+      ? (Object.fromEntries(
+          await Promise.all(locales.map(async (l) => [l, whatsappLink(p.phone, await reminderText(l, reminder))] as const)),
+        ) as Record<Locale, string>)
       : null;
 
   return (
@@ -63,21 +64,21 @@ export default async function PartyPage({ params }: { params: Promise<{ id: stri
         <h2 className="text-base font-semibold text-muted">{due < 0 ? t("parties.inCredit") : t("parties.outstanding")}</h2>
         <p className={`text-5xl font-bold tabular-nums ${due > 0 ? "" : "text-ok"}`}>{inr(Math.abs(due))}</p>
         <dl className="mt-4 divide-y divide-line border-t border-line text-base">
-          <div className="flex min-h-11 items-center justify-between">
+          <div className="flex min-h-11 items-center justify-between gap-4">
             <dt>{t("parties.openingBalance")}</dt>
-            <dd className="tabular-nums">{inr(p.opening_balance)}</dd>
+            <dd className="shrink-0 tabular-nums">{inr(p.opening_balance)}</dd>
           </div>
-          <div className="flex min-h-11 items-center justify-between">
+          <div className="flex min-h-11 items-center justify-between gap-4">
             <dt>{t("parties.plusFreight")}</dt>
-            <dd className="tabular-nums">{inr(p.billed)}</dd>
+            <dd className="shrink-0 tabular-nums">{inr(p.billed)}</dd>
           </div>
-          <div className="flex min-h-11 items-center justify-between">
+          <div className="flex min-h-11 items-center justify-between gap-4">
             <dt>{t("parties.minusAdvance")}</dt>
-            <dd className="tabular-nums">{inr(p.advance_received)}</dd>
+            <dd className="shrink-0 tabular-nums">{inr(p.advance_received)}</dd>
           </div>
-          <div className="flex min-h-11 items-center justify-between">
+          <div className="flex min-h-11 items-center justify-between gap-4">
             <dt>{t("parties.minusPayments")}</dt>
-            <dd className="tabular-nums">{inr(p.payments_received)}</dd>
+            <dd className="shrink-0 tabular-nums">{inr(p.payments_received)}</dd>
           </div>
         </dl>
       </section>
@@ -111,7 +112,7 @@ export default async function PartyPage({ params }: { params: Promise<{ id: stri
                 <div className="flex items-start gap-3">
                   <span className="min-w-0 flex-1">
                     {e.kind === "trip" && e.trip_client_uuid ? (
-                      <Link href={`/trips/${e.trip_client_uuid}/result`} className="block font-semibold text-brand underline-offset-4 active:underline">
+                      <Link href={`/trips/${e.trip_client_uuid}/result`} className="flex min-h-12 items-center font-semibold text-brand underline-offset-4 active:underline">
                         {label}
                       </Link>
                     ) : (
