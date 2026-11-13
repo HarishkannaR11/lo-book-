@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App name on the home screen and in app settings, from messages/gu.json app.name. -->
+<resources>
+    <string name="appName">ટ્રક હિસાબ</string>
+    <string name="launcherName">ટ્રક હિસાબ</string>
+</resources>

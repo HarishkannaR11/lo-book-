@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App name on the home screen and in app settings, from messages/te.json app.name. -->
+<resources>
+    <string name="appName">లారీ లెక్కలు</string>
+    <string name="launcherName">లారీ లెక్కలు</string>
+</resources>

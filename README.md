@@ -3,7 +3,7 @@
 Trip, diesel and dues book for small lorry owners. Phone-first PWA, Tamil by default, in eleven
 Indian languages.
 
-**Status: Phases 1–4 complete, plus on-device OCR and eleven languages.** Phase 1: schema,
+**Status: Phases 1–4 complete, plus on-device OCR, eleven languages and an Android app for Google Play.** Phase 1: schema,
 RLS, phone-OTP sign-in, onboarding, installable PWA. Phase 2: trips, diesel and expenses, close
 trip, profit and mileage, offline sync. Phase 3: party ledger, part payments, outstanding, WhatsApp
 reminder. Phase 4: mileage trend against each vehicle's own usual, monthly report, document expiry
@@ -123,3 +123,42 @@ Derived numbers (profit, mileage, outstanding, the home-screen totals) exist onl
 To check RLS against the hosted project with real accounts, add three test phone numbers with a
 fixed OTP, then run `verify:rls` with `RLS_TEST_PHONE_OWNER_A/B`, `RLS_TEST_PHONE_DRIVER`,
 `RLS_TEST_OTP` and the project's keys. It deletes those three test users before and after.
+
+## Android app (Google Play)
+
+`android/` wraps the deployed site as a Trusted Web Activity (generated with Bubblewrap):
+package `in.lorrybook.app`, Android 7+ (minSdk 24), targets Android 16 (API 36). It is the same
+app as the website: offline mode, OCR and every language behave identically, and a web deploy
+updates the Android app too. Only the home-screen name is native, in the phone's language.
+
+- Full screen, no browser bar, needs `public/.well-known/assetlinks.json` to list the SHA-256 of
+  every key the app is signed with: the upload key (already there) and **Play's app-signing
+  key** (Play Console → Test and release → App integrity → App signing; add it once the app is
+  created there, then deploy).
+- Play requires in-app account deletion (Settings → Delete account) and a privacy policy
+  (`/privacy.html`). Both exist. Listing text and Data safety answers: `android/PLAY_LISTING.md`.
+
+### Build
+
+Needs JDK 17+ and the Android SDK (platform 36, build-tools 36). Signing reads
+`android/keystore.properties`, which is never committed:
+
+```properties
+storeFile=upload-key.jks
+storePassword=…
+keyAlias=upload
+keyPassword=…
+```
+
+```bash
+cd android && ANDROID_HOME=~/android-sdk ./gradlew bundleRelease assembleRelease
+```
+
+Output: `app/build/outputs/bundle/release/app-release.aab` (upload to Play) and
+`app/build/outputs/apk/release/app-release.apk` (install directly on a phone to test). For each
+new upload raise `versionCode` (and `versionName`) in `android/app/build.gradle`. A new upload is
+only needed when the Android wrapper itself changes; changes to the web app go live with a
+normal deploy.
+
+**Keep `upload-key.jks` and its password safe, outside the repo.** If it is lost, Play support
+can reset the upload key, but that takes days.

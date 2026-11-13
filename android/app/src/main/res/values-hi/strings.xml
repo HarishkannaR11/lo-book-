@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App name on the home screen and in app settings, from messages/hi.json app.name. -->
+<resources>
+    <string name="appName">ट्रक हिसाब</string>
+    <string name="launcherName">ट्रक हिसाब</string>
+</resources>

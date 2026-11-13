@@ -1,0 +1,49 @@
+{
+  "packageId": "in.lorrybook.app",
+  "host": "lo-book.vercel.app",
+  "name": "லாரி கணக்கு",
+  "launcherName": "லாரி கணக்கு",
+  "display": "standalone",
+  "themeColor": "#1D4ED8",
+  "themeColorDark": "#1D4ED8",
+  "navigationColor": "#F5F5F4",
+  "navigationColorDark": "#1C1917",
+  "navigationDividerColor": "#E7E5E4",
+  "navigationDividerColorDark": "#44403C",
+  "backgroundColor": "#F5F5F4",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://lo-book.vercel.app/icons/icon-512.png",
+  "maskableIconUrl": "https://lo-book.vercel.app/icons/icon-maskable-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./upload-key.jks",
+    "alias": "upload"
+  },
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-core",
+  "webManifestUrl": "https://lo-book.vercel.app/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://lo-book.vercel.app/",
+  "minSdkVersion": 24,
+  "orientation": "portrait",
+  "fingerprints": [
+    {
+      "name": "upload",
+      "value": "BA:F1:F9:C4:EA:C0:24:4E:B9:FA:AC:66:37:7D:E0:93:79:E4:23:43:82:01:0A:13:94:80:08:A5:1D:DB:C1:46"
+    }
+  ],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "displayOverride": [],
+  "appVersionName": "1.0.0",
+  "appVersion": "1.0.0"
+}
