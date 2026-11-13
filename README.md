@@ -111,7 +111,8 @@ Derived numbers (profit, mileage, outstanding, the home-screen totals) exist onl
 
 ## Deploy (Supabase + Vercel)
 
-1. Create a Supabase project (Mumbai region). Run `npm run db:migrate` with its connection string.
+1. Create a Supabase project (Mumbai region). Either run `npm run db:migrate` with its connection
+   string, or open `supabase/hosted-setup.sql`, paste all of it into **SQL Editor** and Run.
 2. **Auth → Providers → Phone**: enable, and pick an SMS provider. For India, SMS must be
    DLT-registered (sender ID + OTP template) before real OTPs are delivered. Until that is done,
    add your own number under *Test phone numbers* with a fixed OTP to sign in.

@@ -18,7 +18,8 @@
     "db:stop": "supabase stop",
     "postinstall": "node scripts/copy-tesseract.mjs",
     "prebuild": "node scripts/copy-tesseract.mjs",
-    "test": "tsx --test \"src/**/*.test.ts\""
+    "test": "tsx --test \"src/**/*.test.ts\"",
+    "db:bundle": "bash scripts/bundle-migrations.sh"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.5",
