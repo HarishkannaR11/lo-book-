@@ -46,6 +46,7 @@ function redirectKeepingCookies(request: NextRequest, from: NextResponse, to: st
 export const config = {
   matcher: [
     // Everything except static assets, the PWA files and icons.
-    "/((?!_next/static|_next/image|sw\\.js|manifest\\.webmanifest|icons/|icon\\.svg|apple-icon\\.png|favicon\\.ico).*)",
+    // .well-known (Android app links) and the privacy policy must be readable signed out.
+    "/((?!_next/static|_next/image|sw\\.js|manifest\\.webmanifest|icons/|icon\\.svg|apple-icon\\.png|favicon\\.ico|\\.well-known/|privacy\\.html).*)",
   ],
 };

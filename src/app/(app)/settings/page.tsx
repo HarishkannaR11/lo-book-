@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { DeleteAccount } from "@/components/delete-account";
 import { LanguageSwitch } from "@/components/language-switch";
 import { countRows } from "@/components/masters/lists";
 import { SignOutButton } from "@/components/sign-out-button";
@@ -46,6 +47,13 @@ export default async function Settings() {
         <h2 className="text-lg font-bold">{t("settings.account")}</h2>
         <p className="text-muted">{t("settings.signedInAs", { phone: `+91 ${formatMobile(owner.phone)}` })}</p>
         <SignOutButton />
+        <a href="/privacy.html" className="btn-link">
+          {t("settings.privacy")}
+        </a>
+      </section>
+
+      <section id="delete-account" className="space-y-3">
+        <DeleteAccount />
       </section>
     </div>
   );

@@ -27,7 +27,8 @@
     "signOut": "लॉग आउट",
     "signOutPending": "{count, plural, one {{count, number, plain} एंट्री अभी सर्वर तक नहीं पहुँची। फिर भी लॉग आउट करें? यह मिट जाएगी।} other {{count, number, plain} एंट्री अभी सर्वर तक नहीं पहुँचीं। फिर भी लॉग आउट करें? ये मिट जाएँगी।}}",
     "sep": " · ",
-    "dash": "—"
+    "dash": "—",
+    "cancel": "रद्द करें"
   },
   "language": {
     "label": "भाषा",
@@ -57,7 +58,8 @@
     "verifying": "जाँच रहे हैं…",
     "changeNumber": "नंबर बदलें",
     "resend": "OTP फिर भेजें",
-    "resendIn": "{seconds} सेकंड में फिर भेज सकते हैं"
+    "resendIn": "{seconds} सेकंड में फिर भेज सकते हैं",
+    "accountDeleted": "आपका खाता और उसका सारा डेटा हटा दिया गया है।"
   },
   "errors": {
     "required": "यह भरें",
@@ -113,7 +115,12 @@
     "business": "कारोबार की जानकारी",
     "lists": "सूचियाँ",
     "account": "खाता",
-    "signedInAs": "{phone} से लॉग इन"
+    "signedInAs": "{phone} से लॉग इन",
+    "privacy": "गोपनीयता नीति",
+    "deleteAccount": "खाता हटाएँ",
+    "deleteWarning": "इससे आपका खाता और उसका सारा डेटा हट जाएगा — गाड़ियाँ, ड्राइवर, पार्टियाँ, ट्रिप, खर्च, भुगतान और फ़ोटो। इसे वापस नहीं लाया जा सकता।",
+    "deleteConfirm": "हाँ, सब कुछ हटाएँ",
+    "deleting": "हटाया जा रहा है…"
   },
   "vehicles": {
     "title": "गाड़ियाँ",

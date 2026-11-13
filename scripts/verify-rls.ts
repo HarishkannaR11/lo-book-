@@ -351,6 +351,29 @@ async function main(): Promise<void> {
     check(`signed out: ${rel} not readable`, n === 0 || typeof n === "string", String(n));
   }
 
+  // ---------------------------------------------------------------- delete my account (Play Store)
+  const anonDel = await anon.rpc("delete_my_account");
+  check("signed out: delete_my_account refused", anonDel.error !== null);
+  const ownedBy = async (owner: string): Promise<number> => {
+    const counts = await Promise.all([
+      admin.from("owners").select("*", { count: "exact", head: true }).eq("id", owner),
+      admin.from("vehicles").select("*", { count: "exact", head: true }).eq("owner_id", owner),
+      admin.from("drivers").select("*", { count: "exact", head: true }).eq("owner_id", owner),
+      admin.from("parties").select("*", { count: "exact", head: true }).eq("owner_id", owner),
+      admin.from("trips").select("*", { count: "exact", head: true }).eq("owner_id", owner),
+      admin.from("payments").select("*", { count: "exact", head: true }).eq("owner_id", owner),
+    ]);
+    return counts.reduce((sum, r) => sum + (r.count ?? 0), 0);
+  };
+  const aBefore = await ownedBy(a.userId);
+  const bBefore = await ownedBy(b.userId);
+  const bDelete = await b.db.rpc("delete_my_account");
+  check("owner B: can delete own account", bDelete.error === null, bDelete.error?.message);
+  check(`owner B: all ${bBefore} of B's rows are gone`, bBefore > 0 && (await ownedBy(b.userId)) === 0);
+  const bUser = await admin.auth.admin.getUserById(b.userId);
+  check("owner B: sign-in account is gone", bUser.data.user === null);
+  check(`owner A: all ${aBefore} of A's rows untouched`, (await ownedBy(a.userId)) === aBefore);
+
   await admin.storage.from("slips").remove([slipPath]);
   await deleteTestUsers();
 

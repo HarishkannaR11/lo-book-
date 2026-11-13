@@ -716,3 +716,26 @@ revoke insert, update, delete, truncate, references, trigger
   on public.vehicle_trip_mileage, public.monthly_report, public.document_alerts from authenticated;
 
 insert into supabase_migrations.schema_migrations (version, name) values ('20261115000100', 'phase4_insight') on conflict do nothing;
+
+-- ===== 20261116000100_account_deletion
+-- Anyone signed in can delete their own account from the app, as Google Play requires.
+-- Deleting the auth user cascades through owners to every vehicle, driver, party, trip,
+-- expense, payment and document row they own (all owner_id foreign keys are ON DELETE
+-- CASCADE). A driver's own login can be deleted too; the owner's records of that driver stay,
+-- and expenses they entered keep their amounts with entered_by_user_id set to null.
+-- Photos are not touched here: Supabase only allows removing them through the Storage API,
+-- so the server action removes them first, as the user, before calling this.
+create function public.delete_my_account() returns void
+language plpgsql security definer set search_path = '' as $$
+begin
+  if auth.uid() is null then
+    raise exception 'not signed in' using errcode = '42501';
+  end if;
+  delete from auth.users where id = auth.uid();
+end;
+$$;
+
+revoke execute on function public.delete_my_account() from public, anon;
+grant execute on function public.delete_my_account() to authenticated;
+
+insert into supabase_migrations.schema_migrations (version, name) values ('20261116000100', 'account_deletion') on conflict do nothing;

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "in.lorrybook.app",
+      "sha256_cert_fingerprints": [
+        "BA:F1:F9:C4:EA:C0:24:4E:B9:FA:AC:66:37:7D:E0:93:79:E4:23:43:82:01:0A:13:94:80:08:A5:1D:DB:C1:46"
+      ]
+    }
+  }
+]

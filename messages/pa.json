@@ -27,7 +27,8 @@
     "signOut": "ਸਾਈਨ ਆਉਟ",
     "signOutPending": "{count, plural, one {{count, number, plain} ਐਂਟਰੀ ਅਜੇ ਸਰਵਰ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚੀ। ਫਿਰ ਵੀ ਸਾਈਨ ਆਉਟ ਕਰਨਾ ਹੈ? ਇਹ ਮਿਟ ਜਾਵੇਗੀ।} other {{count, number, plain} ਐਂਟਰੀਆਂ ਅਜੇ ਸਰਵਰ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚੀਆਂ। ਫਿਰ ਵੀ ਸਾਈਨ ਆਉਟ ਕਰਨਾ ਹੈ? ਇਹ ਮਿਟ ਜਾਣਗੀਆਂ।}}",
     "sep": " · ",
-    "dash": "—"
+    "dash": "—",
+    "cancel": "ਰੱਦ ਕਰੋ"
   },
   "language": {
     "label": "ਭਾਸ਼ਾ",
@@ -57,7 +58,8 @@
     "verifying": "ਜਾਂਚ ਰਹੇ ਹਾਂ…",
     "changeNumber": "ਨੰਬਰ ਬਦਲੋ",
     "resend": "OTP ਦੁਬਾਰਾ ਭੇਜੋ",
-    "resendIn": "{seconds} ਸਕਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਭੇਜ ਸਕਦੇ ਹੋ"
+    "resendIn": "{seconds} ਸਕਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਭੇਜ ਸਕਦੇ ਹੋ",
+    "accountDeleted": "ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਉਸਦਾ ਸਾਰਾ ਡਾਟਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
   },
   "errors": {
     "required": "ਇਹ ਭਰੋ",
@@ -113,7 +115,12 @@
     "business": "ਕਾਰੋਬਾਰ ਦੀ ਜਾਣਕਾਰੀ",
     "lists": "ਸੂਚੀਆਂ",
     "account": "ਖਾਤਾ",
-    "signedInAs": "{phone} ਨਾਲ ਲੌਗ ਇਨ"
+    "signedInAs": "{phone} ਨਾਲ ਲੌਗ ਇਨ",
+    "privacy": "ਨਿੱਜਤਾ ਨੀਤੀ",
+    "deleteAccount": "ਖਾਤਾ ਹਟਾਓ",
+    "deleteWarning": "ਇਸ ਨਾਲ ਤੁਹਾਡਾ ਖਾਤਾ ਅਤੇ ਉਸਦਾ ਸਾਰਾ ਡਾਟਾ ਹਟ ਜਾਵੇਗਾ — ਗੱਡੀਆਂ, ਡਰਾਈਵਰ, ਪਾਰਟੀਆਂ, ਟ੍ਰਿਪਾਂ, ਖਰਚੇ, ਭੁਗਤਾਨ ਅਤੇ ਫ਼ੋਟੋਆਂ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਆ ਸਕੇਗਾ।",
+    "deleteConfirm": "ਹਾਂ, ਸਭ ਕੁਝ ਹਟਾਓ",
+    "deleting": "ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…"
   },
   "vehicles": {
     "title": "ਗੱਡੀਆਂ",

@@ -27,7 +27,8 @@
     "signOut": "સાઇન આઉટ",
     "signOutPending": "{count, plural, one {{count, number, plain} એન્ટ્રી હજુ સર્વર સુધી પહોંચી નથી. છતાં સાઇન આઉટ કરવું છે? તે ખોવાઈ જશે.} other {{count, number, plain} એન્ટ્રી હજુ સર્વર સુધી પહોંચી નથી. છતાં સાઇન આઉટ કરવું છે? તે ખોવાઈ જશે.}}",
     "sep": " · ",
-    "dash": "—"
+    "dash": "—",
+    "cancel": "રદ કરો"
   },
   "language": {
     "label": "ભાષા",
@@ -57,7 +58,8 @@
     "verifying": "તપાસી રહ્યા છીએ…",
     "changeNumber": "નંબર બદલો",
     "resend": "OTP ફરી મોકલો",
-    "resendIn": "{seconds} સેકન્ડમાં ફરી મોકલી શકાશે"
+    "resendIn": "{seconds} સેકન્ડમાં ફરી મોકલી શકાશે",
+    "accountDeleted": "તમારું ખાતું અને તેની બધી માહિતી કાઢી નાખવામાં આવી છે."
   },
   "errors": {
     "required": "આ ભરો",
@@ -113,7 +115,12 @@
     "business": "ધંધાની વિગત",
     "lists": "યાદીઓ",
     "account": "ખાતું",
-    "signedInAs": "{phone} થી લૉગ ઇન"
+    "signedInAs": "{phone} થી લૉગ ઇન",
+    "privacy": "ગોપનીયતા નીતિ",
+    "deleteAccount": "ખાતું કાઢી નાખો",
+    "deleteWarning": "આનાથી તમારું ખાતું અને તેની બધી માહિતી કાઢી નખાશે — ગાડીઓ, ડ્રાઇવર, પાર્ટીઓ, ટ્રિપ, ખર્ચ, ચુકવણી અને ફોટા. આ પાછું લાવી શકાશે નહીં.",
+    "deleteConfirm": "હા, બધું કાઢી નાખો",
+    "deleting": "કાઢી રહ્યા છીએ…"
   },
   "vehicles": {
     "title": "ગાડીઓ",

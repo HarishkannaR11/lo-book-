@@ -885,6 +885,10 @@ export type Database = {
       };
     };
     Functions: {
+      delete_my_account: {
+        Args: Record<PropertyKey, never>;
+        Returns: undefined;
+      };
       driver_open_trips: {
         Args: Record<PropertyKey, never>;
         Returns: {

@@ -27,7 +27,8 @@
     "signOut": "Sign out",
     "signOutPending": "{count, plural, one {1 entry hasn't reached the server yet. Sign out anyway? It will be lost.} other {{count, number, plain} entries haven't reached the server yet. Sign out anyway? They will be lost.}}",
     "sep": " · ",
-    "dash": "—"
+    "dash": "—",
+    "cancel": "Cancel"
   },
   "language": {
     "label": "Language",
@@ -57,7 +58,8 @@
     "verifying": "Checking…",
     "changeNumber": "Change number",
     "resend": "Resend OTP",
-    "resendIn": "Resend in {seconds}s"
+    "resendIn": "Resend in {seconds}s",
+    "accountDeleted": "Your account and all its data have been deleted."
   },
   "errors": {
     "required": "Please fill this in",
@@ -113,7 +115,12 @@
     "business": "Business details",
     "lists": "Lists",
     "account": "Account",
-    "signedInAs": "Signed in as {phone}"
+    "signedInAs": "Signed in as {phone}",
+    "privacy": "Privacy policy",
+    "deleteAccount": "Delete account",
+    "deleteWarning": "This deletes your account and everything in it — vehicles, drivers, parties, trips, expenses, payments and photos. It cannot be undone.",
+    "deleteConfirm": "Yes, delete everything",
+    "deleting": "Deleting…"
   },
   "vehicles": {
     "title": "Vehicles",
