@@ -115,8 +115,8 @@ Derived numbers (profit, mileage, outstanding, the home-screen totals) exist onl
 2. **Auth → Providers → Phone**: enable, and pick an SMS provider. For India, SMS must be
    DLT-registered (sender ID + OTP template) before real OTPs are delivered. Until that is done,
    add your own number under *Test phone numbers* with a fixed OTP to sign in.
-3. Vercel: import the repo, set `NEXT_PUBLIC_SUPABASE_URL` and
-   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. Deploy.
+3. Vercel: import the repo and set `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` (type
+   Secret is fine). Both are read only on the server and never reach the browser. Deploy.
 4. On the Android phone, open the Vercel link in Chrome → ⋮ → *Add to home screen* / *Install app*.
 
 To check RLS against the hosted project with real accounts, add three test phone numbers with a

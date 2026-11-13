@@ -25,8 +25,8 @@ function env(name: string, fallback?: string): string {
   return value;
 }
 
-const URL = env("NEXT_PUBLIC_SUPABASE_URL", "http://127.0.0.1:54321");
-const PUBLISHABLE = env("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+const URL = env("SUPABASE_URL", "http://127.0.0.1:54321");
+const PUBLISHABLE = env("SUPABASE_PUBLISHABLE_KEY");
 const SECRET = env("SUPABASE_SECRET_KEY");
 const OTP = env("RLS_TEST_OTP", "123456");
 const PHONE = {
