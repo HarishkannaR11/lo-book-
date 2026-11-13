@@ -28,7 +28,7 @@ export default defineConfig([
           },
           // Arguments to translators and formatters are keys/format names, not display text.
           callees: {
-            exclude: ["t(Ta|En)?", "format\\.(number|dateTime|relativeTime|list)", "require", "addEventListener", "removeEventListener", "includes", "startsWith", "endsWith"],
+            exclude: ["t(Ta|En|All)?", "format\\.(number|dateTime|relativeTime|list)", "require", "addEventListener", "removeEventListener", "includes", "startsWith", "endsWith"],
           },
           message: "User-facing text must come from messages/*.json via next-intl.",
         },

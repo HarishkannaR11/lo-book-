@@ -105,7 +105,8 @@
     "monthProfit": "Profit this month",
     "outstanding": "Outstanding to collect",
     "newTrip": "New trip",
-    "addDiesel": "Add diesel"
+    "addDiesel": "Add diesel",
+    "docsDue": "Documents due"
   },
   "settings": {
     "title": "Settings",
@@ -333,7 +334,8 @@
     "readOk": "Date read from the photo — please check it",
     "readFailed": "Couldn't find the date. Please enter it.",
     "expiresOn": "Expiry date",
-    "viewPhoto": "View saved photo"
+    "viewPhoto": "View saved photo",
+    "dueSoon": "Due soon"
   },
   "reminder": {
     "greeting": "Hello {party},",
@@ -343,5 +345,35 @@
     "tripLine": "• {from} → {to} ({date}) — {freight}",
     "request": "Kindly arrange the payment at the earliest. Thank you.",
     "sign": "— {owner}, {phone}"
+  },
+  "reports": {
+    "title": "Monthly report",
+    "prev": "Previous month",
+    "next": "Next month",
+    "allVehicles": "All vehicles",
+    "trips": "Trips",
+    "revenue": "Freight earned",
+    "expenses": "Expenses",
+    "profit": "Profit",
+    "mileage": "Mileage",
+    "empty": "No trips closed this month"
+  },
+  "mileage": {
+    "title": "Mileage, last 10 trips",
+    "legendTrip": "Trip mileage",
+    "legendUsual": "Usual range",
+    "legendDrop": "10% or more below usual",
+    "empty": "Mileage shows here once a few trips are closed with diesel litres and odometer readings.",
+    "chartLabel": "{reg}: mileage of recent trips against its usual range",
+    "down": "Mileage down",
+    "downDetail": "Last trip {value} km/L, {pct}% below its usual {usual} km/L",
+    "table": "Show as table",
+    "colTrip": "Trip",
+    "colKmpl": "km/L",
+    "colUsual": "Usual",
+    "colVs": "vs usual",
+    "tooltipUsual": "Usual {usual} km/L",
+    "noUsual": "Not enough earlier trips to compare yet",
+    "pct": "{pct}%"
   }
 }

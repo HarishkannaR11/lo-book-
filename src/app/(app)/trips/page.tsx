@@ -19,9 +19,14 @@ export default async function Trips() {
   return (
     <div className="space-y-6">
       <PageHeader title={t("trips.title")} />
-      <Link href="/trips/new" className="btn-primary min-h-16 text-xl">
-        {t("trips.new")}
-      </Link>
+      <div className="grid gap-3">
+        <Link href="/trips/new" className="btn-primary min-h-16 text-xl">
+          {t("trips.new")}
+        </Link>
+        <Link href="/reports" className="btn-secondary">
+          {t("reports.title")}
+        </Link>
+      </div>
       <PendingTrips />
 
       <section className="space-y-2">

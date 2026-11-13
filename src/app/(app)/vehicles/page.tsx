@@ -17,6 +17,10 @@ export default async function Vehicles() {
     .order("reg_number");
   if (error) throw new Error(error.message);
   const today = todayIST();
+  // Latest closed trip per vehicle, already judged against that vehicle's usual in SQL.
+  const { data: latest, error: mErr } = await supabase.from("vehicle_trip_mileage").select("vehicle_id, is_drop").eq("recency", 1);
+  if (mErr) throw new Error(mErr.message);
+  const dropped = new Set(latest.filter((m) => m.is_drop).map((m) => m.vehicle_id));
 
   return (
     <div className="space-y-5">
@@ -34,7 +38,13 @@ export default async function Vehicles() {
               });
           return (
             <li key={v.id}>
-              <ListRow href={`/vehicles/${v.id}`} title={formatReg(v.reg_number)} subtitle={v.nickname ? t("documents.withNickname", { nickname: v.nickname, status: subtitle }) : subtitle} />
+              <ListRow
+                href={`/vehicles/${v.id}`}
+                title={formatReg(v.reg_number)}
+                subtitle={v.nickname ? t("documents.withNickname", { nickname: v.nickname, status: subtitle }) : subtitle}
+                badge={dropped.has(v.id) ? t("mileage.down") : undefined}
+                tone={dropped.has(v.id) ? "danger" : undefined}
+              />
             </li>
           );
         })}

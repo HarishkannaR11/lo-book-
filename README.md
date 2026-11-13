@@ -3,10 +3,24 @@
 Trip, diesel and dues book for small lorry owners. Phone-first PWA, Tamil by default, in eleven
 Indian languages.
 
-**Status: Phases 1–3 complete, plus on-device OCR and eleven languages.** Phase 1: schema,
+**Status: Phases 1–4 complete, plus on-device OCR and eleven languages.** Phase 1: schema,
 RLS, phone-OTP sign-in, onboarding, installable PWA. Phase 2: trips, diesel and expenses, close
 trip, profit and mileage, offline sync. Phase 3: party ledger, part payments, outstanding, WhatsApp
-reminder. OCR: bunk slips and vehicle document expiry dates, read on the phone.
+reminder. Phase 4: mileage trend against each vehicle's own usual, monthly report, document expiry
+warnings on home. OCR: bunk slips and vehicle document expiry dates, read on the phone.
+
+## Insight (Phase 4)
+
+- **Mileage trend** (`/vehicles/[id]`): the last 10 trips against the vehicle's *own* usual —
+  the median km/L of its previous 10 trips (`vehicle_trip_mileage` view). The grey band is usual
+  ±5%; a trip 10% or more below usual is a red triangle, and the vehicle list flags that lorry.
+  A median, so a sustained drop stays red instead of dragging its own baseline down. The axis
+  always spans at least −15% to +10% of usual, so normal wobble looks small on every vehicle.
+- **Monthly report** (`/reports`, or tap this month's profit on home): per vehicle and in total —
+  trips, freight, expenses, profit, mileage — from the `monthly_report` view. Same rule as home
+  (closed trips, by end date), so the two always agree.
+- **Documents due** appear on home only when something has expired or expires within 30 days
+  (`document_alerts` view).
 
 ## Languages
 

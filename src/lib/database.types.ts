@@ -296,6 +296,13 @@ export type Database = {
             referencedRelation: "trips";
             referencedColumns: ["id"];
           },
+          {
+            foreignKeyName: "trip_expenses_trip_id_fkey";
+            columns: ["trip_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicle_trip_mileage";
+            referencedColumns: ["trip_id"];
+          },
         ];
       };
       trips: {
@@ -503,6 +510,93 @@ export type Database = {
       };
     };
     Views: {
+      document_alerts: {
+        Row: {
+          days_left: number | null;
+          doc_type: Database["public"]["Enums"]["doc_type"];
+          expires_on: string;
+          owner_id: string;
+          reg_number: string;
+          vehicle_id: string;
+        };
+        ComputedFields: never;
+        Relationships: [
+          {
+            foreignKeyName: "vehicle_documents_vehicle_id_fkey";
+            columns: ["vehicle_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicle_odometer";
+            referencedColumns: ["vehicle_id"];
+          },
+          {
+            foreignKeyName: "vehicle_documents_vehicle_id_fkey";
+            columns: ["vehicle_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "vehicles_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owner_dashboard";
+            referencedColumns: ["owner_id"];
+          },
+          {
+            foreignKeyName: "vehicles_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owners";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      monthly_report: {
+        Row: {
+          distance_km: number | null;
+          expenses: number | null;
+          is_total: boolean | null;
+          litres: number | null;
+          mileage_kmpl: number | null;
+          month: string | null;
+          owner_id: string | null;
+          profit: number | null;
+          revenue: number | null;
+          trips: number | null;
+          vehicle_id: string | null;
+        };
+        ComputedFields: never;
+        Relationships: [
+          {
+            foreignKeyName: "trips_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owner_dashboard";
+            referencedColumns: ["owner_id"];
+          },
+          {
+            foreignKeyName: "trips_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owners";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "trips_vehicle_id_owner_id_fkey";
+            columns: ["vehicle_id", "owner_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicle_odometer";
+            referencedColumns: ["vehicle_id", "owner_id"];
+          },
+          {
+            foreignKeyName: "trips_vehicle_id_owner_id_fkey";
+            columns: ["vehicle_id", "owner_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicles";
+            referencedColumns: ["id", "owner_id"];
+          },
+        ];
+      };
       owner_dashboard: {
         Row: {
           month_profit: number | null;
@@ -737,6 +831,55 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "owners";
             referencedColumns: ["id"];
+          },
+        ];
+      };
+      vehicle_trip_mileage: {
+        Row: {
+          client_uuid: string;
+          distance_km: number | null;
+          ended_on: string | null;
+          from_place: string;
+          is_drop: boolean | null;
+          litres: number | null;
+          mileage_kmpl: number | null;
+          owner_id: string;
+          recency: number | null;
+          to_place: string;
+          trip_id: string;
+          usual_kmpl: number | null;
+          vehicle_id: string;
+          vs_usual_pct: number | null;
+        };
+        ComputedFields: never;
+        Relationships: [
+          {
+            foreignKeyName: "trips_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owner_dashboard";
+            referencedColumns: ["owner_id"];
+          },
+          {
+            foreignKeyName: "trips_owner_id_fkey";
+            columns: ["owner_id"];
+            isOneToOne: false;
+            referencedRelation: "owners";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "trips_vehicle_id_owner_id_fkey";
+            columns: ["vehicle_id", "owner_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicle_odometer";
+            referencedColumns: ["vehicle_id", "owner_id"];
+          },
+          {
+            foreignKeyName: "trips_vehicle_id_owner_id_fkey";
+            columns: ["vehicle_id", "owner_id"];
+            isOneToOne: false;
+            referencedRelation: "vehicles";
+            referencedColumns: ["id", "owner_id"];
           },
         ];
       };

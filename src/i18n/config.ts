@@ -42,8 +42,11 @@ export const formats = {
       numberingSystem: "latn",
     },
     plain: { maximumFractionDigits: 2, numberingSystem: "latn" },
+    pct: { maximumFractionDigits: 1, signDisplay: "exceptZero", numberingSystem: "latn" },
   },
   dateTime: {
     short: { day: "numeric", month: "short", year: "numeric", numberingSystem: "latn" },
+    dayMonth: { day: "numeric", month: "short", numberingSystem: "latn" },
+    month: { month: "long", year: "numeric", numberingSystem: "latn" },
   },
 } as const;

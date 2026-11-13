@@ -79,7 +79,7 @@ async function signIn(phone: string): Promise<{ db: Client; userId: string }> {
 type TableName = keyof Database["public"]["Tables"];
 type ViewName = keyof Database["public"]["Views"];
 const TABLES: TableName[] = ["owners", "vehicles", "vehicle_documents", "drivers", "parties", "trips", "trip_expenses", "payments"];
-const VIEWS: ViewName[] = ["trip_summary", "vehicle_mileage", "party_outstanding", "owner_dashboard", "vehicle_odometer", "party_ledger"];
+const VIEWS: ViewName[] = ["trip_summary", "vehicle_mileage", "party_outstanding", "owner_dashboard", "vehicle_odometer", "party_ledger", "vehicle_trip_mileage", "monthly_report", "document_alerts"];
 const ALL_READABLE: (TableName | ViewName)[] = [...TABLES, ...VIEWS];
 
 const isView = (rel: TableName | ViewName): rel is ViewName => (VIEWS as string[]).includes(rel);
