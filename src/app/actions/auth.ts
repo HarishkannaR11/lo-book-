@@ -15,7 +15,10 @@ export type SendOtpState =
 
 export type VerifyOtpState = { status: "idle" } | { status: "error"; error: ErrorCode };
 
-function authErrorCode(error: { status?: number; code?: string }, fallback: ErrorCode): ErrorCode {
+function authErrorCode(error: { status?: number; code?: string; message?: string }, fallback: ErrorCode): ErrorCode {
+  // The owner sees a plain message; the real reason (provider off, SMS gateway refused, bad
+  // key) goes to the server log so it can be fixed. No phone number or OTP is logged.
+  console.error("auth error", { status: error.status, code: error.code, message: error.message });
   if (error.status === 429 || error.code?.startsWith("over_")) return "tooManyRequests";
   return fallback;
 }
